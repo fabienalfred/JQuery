@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax</title>
+
+<script type="text/javascript">
+function getXMLHttpRequest(){
+	if(window.XMLHttpRequest)
+		return new XMLHttpRequest();
+	if(window.ActiveXObject){
+		var xhr = new ActiveXObject("Msxml2.XMLHTTP");
+		if(xhr!=null)
+			return xhr;
+		return new ActiveXObject("Microsoft.XMLHTTP");
+	}
+}
+
+function query(xhr,urlGetString){
+	xhr.onreadystatechange=function(){
+		if(xhr.readyState==4 && xhr.status==200){
+			var xml = xhr.responseXML;
+			setInput(xml.getElementsByTagName("message")[0].childNodes[0].nodeValue);
+		}
+	}
+	xhr.open("GET",urlGetString,true);
+	xhr.send();
+}
+
+function setInput(text){
+	document.getElementById("result").innerHTML=text;
+}
+window.onload = function(){
+	var xhr = getXMLHttpRequest();
+	var url = "hello.xml";
+	query(xhr,url);
+}
+</script>
+</head>
+<body>
+Réponse de Hello XML : <div id="result" ></div>
+</body>
+</html>

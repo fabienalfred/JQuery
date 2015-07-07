@@ -1,0 +1,1 @@
+{message:"JSON Hello",sayHello:function(){alert('Hello');} }
