@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="css/form.css" />
+	<script type="text/javascript" src="javascript/jquery-2.1.4.js"></script>
+	<script type="text/javascript" src="javascript/form.js"></script>
+</head>
+<body>
+	<form method="get" action="http://192.168.1.16:8080/echo/EchoServlet" target="_blank">
+		<fieldset>
+			<legend>Identifiez-vous</legend>
+		<label for="user">Identifiant : </label><input type="text" id="user" name="user"/> * 
+			<span id="err_user" class="erreur" style="visibility: hidden">Vous devez saisir votre identifiant</span><br/>
+		<label for="pswd">Mot de passe : </label><input type="password" id="pswd" name="pswd"/> * 
+			<span id="err_pswd" class="erreur"  style="visibility: hidden">Vous devez saisir votre mot de passe</span><br/>
+		<input type="submit" value="S'identifier" id="idSubmit"/>
+		</fieldset>
+	</form>
+</body>
+</html>

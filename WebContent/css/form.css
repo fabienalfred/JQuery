@@ -1,0 +1,22 @@
+form{
+	width: 600px;
+}
+
+label{
+	float: left;
+	width: 100px;
+}
+
+input[type="password"], input[type="text"]{
+	width: 150px;
+}
+
+.erreur{
+	color: red;
+}
+
+.required{
+	color: red;
+}
+
+
