@@ -19,8 +19,8 @@ function getXMLHttpRequest(){
 function query(xhr,urlGetString){
 	xhr.onreadystatechange=function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			var obj = JSON.parse(xhr.responseText);
-// 			var obj = eval("("+xhr.responseText+")");
+// 			var obj = JSON.parse("("+xhr.responseText+")");
+			var obj = eval("("+xhr.responseText+")");
 			obj.sayHello();
 			setInput(obj.message);
 		}
