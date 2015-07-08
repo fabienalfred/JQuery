@@ -1,0 +1,35 @@
+@CHARSET "UTF-8";
+
+li{
+	color: white;
+	list-style: none;
+	padding: 10px;
+	border: 5px outset black;
+	width: 100px;
+	height: 15px;
+	text-align: center;
+}
+
+.menuItem{
+	float: left;
+	background-color: black;
+	vertical-align: baseline;
+}
+
+.subMenu{
+	display: none;
+	position: absolute;
+	left: 8px;
+	width: 100px;
+	float: none;
+}
+
+.menuItem:hover > .subMenu{
+	display: block;
+}
+
+.subMenu > li{
+/* 	float: none; */
+	background-color: #818383;
+/* 	vertical-align: baseline; */
+}
