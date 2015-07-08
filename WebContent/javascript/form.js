@@ -2,16 +2,20 @@ function checkForm(event){
 	var user = $("#user").val();
 	var pswd = $("#pswd").val();
 	var ok = true;
-	$("#err_user").css("visibility", "hidden");
-	$("#err_pswd").css("visibility", "hidden");
-	if(user==""){
-		$("#err_user").css("visibility", "visible");
-		ok = false;
-	}
-	if(pswd==""){
-		$("#err_pswd").css("visibility", "visible");
-		ok = false;
-	}
+	$("span[id^='err_']").hide();
+	
+	$.each($("input"), function(index,value){
+		var spanId = "#err_"+$(this).attr("id");
+		$(spanId).toggle($(this).val() == "");
+		ok = ok & ($(this).val() != "");
+	});
+	
+	// methode gros bourrin
+//	$("span[id^='err_']").each(function(){
+//		$(this).toggle($("#"+$(this).attr('id').split("_")[1]).val() == "");	//correspond a $(#user) ou $(#pswd)
+//		ok = ok & ($("#"+$(this).attr('id').split("_")[1]).val() != "");
+//	});
+	
 	if(!ok){
 		event.preventDefault();
 		return false;
@@ -20,32 +24,14 @@ function checkForm(event){
 }
 
 function fieldValidation(event){
-//	var spanId = "#err_"+$(this).attr("id");
-//	$(spanId).toggle($(this).val() == "");
-	
-	if(this.value=="")
-		$("#err_"+this.id).css("visibility", "visible");
-	else
-		$("#err_"+this.id).css("visibility", "hidden");
-		
+	var spanId = "#err_"+$(this).attr("id");
+	$(spanId).toggle($(this).val() == "");
+	return !$(this).val() == "" ;
 }
-
-//window.onload=function(){
-//	document.getElementById("idSubmit").onclick = checkForm;
-//	document.getElementById("user").focus();
-//}
-
-//document.addEventListener("DOMContentLoaded", function(){
-//	document.getElementById("idSubmit").addEventListener("click", checkForm, false);
-//	document.getElementById("user").addEventListener("blur", fieldValidation, false);
-//	document.getElementById("pswd").addEventListener("blur", fieldValidation, false);
-//	document.getElementById("user").focus();
-//}, false);
 
 $(document).ready(function(){
 	$("#user").focus();
-//	$("#idSubmit").click(checkForm);
 	$("form").submit(checkForm);
-	$("#user, #pswd").blur(fieldValidation);
-//	$("span[id^='err_']").hide();
+	$("input").blur(fieldValidation);
+	$("span[id^='err_']").hide();
 });
